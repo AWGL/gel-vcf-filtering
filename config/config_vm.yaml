@@ -1,0 +1,16 @@
+roi_bed: /media/sf_Documents/gel_vcf_filtering/config/beds/truseq-exome-targeted-regions-manifest-v1-2.bed
+
+families:
+  FAM001: [LP3000972-DNA_H03_LP3000972-DNA_H03, LP3000972-DNA_H03_LP3000962-DNA_B01, LP3000972-DNA_H03_LP3000992-DNA_G08]
+
+reference: /media/sf_Documents/genomics_resources/refs/Homo_sapiens.GRCh38.dna.primary_assembly.fa.gz
+
+vep_cache_location: /media/sf_Documents/genomics_resources/vep_refseq_38/
+
+gnomad_genomes: /media/sf_Documents/genomics_resources/snps/gnomad.genomes.r2.0.1.sites.GRCh38.noVEP.vcf.gz
+
+gnomad_exomes: /media/sf_Documents/genomics_resources/snps/gnomad.exomes.r2.0.1.sites.GRCh38.noVEP.vcf.gz
+
+ccrs: /media/sf_Documents/genomics_resources/beds/ccrs.all.v2.20180420_38.bed.gz
+
+vep_threads: 1

@@ -1,0 +1,8 @@
+input/
+.DS_Store
+.snakemake/
+input/
+*.vcf
+test.vcf.unmap
+*.ped
+output/

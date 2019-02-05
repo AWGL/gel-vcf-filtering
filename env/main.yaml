@@ -1,0 +1,12 @@
+name: gel_vcf_filtering
+channels:
+- bioconda
+dependencies:
+- python = 3.6
+- bcftools = 1.9
+- snakemake = 5.4.0
+- gatk4 = 4.0.11.0
+- htslib = 1.9
+- vt = 0.57721
+- ensembl-vep = 94.5
+- pandas
