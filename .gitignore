@@ -6,3 +6,4 @@ input/
 test.vcf.unmap
 *.ped
 output/
+*.csv

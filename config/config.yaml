@@ -17,6 +17,8 @@ spliceai: test
 
 vep_threads: 1
 
+peddy_threads: 1
+
 sample_info:
     LP3000972-DNA_H03:
       familyId: FAM001

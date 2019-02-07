@@ -2,7 +2,7 @@
 # Genomics England VCF filtering
 ###########################################################################################################################
 
-config_location = "config/config_vm.yaml"
+config_location = "config/config_vm_validation.yaml"
 
 configfile: config_location
 
@@ -26,11 +26,34 @@ def get_family(wildcards):
 # Main program
 ###########################################################################################################################
 
-# Take the region of interest bed file and filter each WGS bed file
-rule filter_by_roi:
+
+# remove '-' from sample names and replace with '_'
+rule fix_sample_names:
 	input:
 		vcf = "input/{family_id}/{sample}.vcf.gz",
 		index = "input/{family_id}/{sample}.vcf.gz.tbi"
+	output:
+		vcf = "output/fixed_name_vcfs/{family_id}/{sample}_fixed_names.vcf.gz",
+		index = "output/fixed_name_vcfs/{family_id}/{sample}_fixed_names.vcf.gz.tbi",
+		original_name = "output/temp/{family_id}/{sample}_original_name.txt",
+		new_name = "output/temp/{family_id}/{sample}_new_name.txt"
+	shell:
+		"""
+		bcftools query --list-samples {input.vcf} > {output.original_name}
+
+		cat {output.original_name} | tr "-" "_" | tr "." "_" > {output.new_name}
+		
+		bcftools reheader --samples {output.new_name} {input.vcf} | bcftools view -O z > {output.vcf}
+
+		tabix {output.vcf}
+
+		"""
+
+# Take the region of interest bed file and filter each WGS bed file
+rule filter_by_roi:
+	input:
+		vcf = "output/fixed_name_vcfs/{family_id}/{sample}_fixed_names.vcf.gz",
+		index = "output/fixed_name_vcfs/{family_id}/{sample}_fixed_names.vcf.gz.tbi"
 	output:
 		vcf = "output/roi/{family_id}/{sample}_roi.vcf"
 	params:
@@ -40,7 +63,7 @@ rule filter_by_roi:
 		"{input.vcf} > {output.vcf} "
 
 
-# Take the region of interest bed file and filter each WGS bed file
+# Compress and index the vcf
 rule compress_and_index_vcf:
 	input:
 		vcf = "output/roi/{family_id}/{sample}_roi.vcf"
@@ -63,39 +86,65 @@ rule merge_vcfs:
 	shell:
 		"bcftools merge {params.vcfs} | bgzip -c > {output} && tabix {output}"
 
-
 # Create a PED file for downstream analysis
 rule create_ped_file:
 	input:
 		config_location
 	output:
-		"output/config/all_families.ped"
+		"output/all_ped/all_families.ped"
 	shell:
 		"python scripts/make_ped.py --config {input} > {output}"
 
-
-# Check the ped file makes sense using peddy
-rule ped_check:
+# Create a PED file for each family
+rule create_per_family_ped:
 	input:
-		"output/merged/{family_id}_merged.vcf.gz"
+		ped = "output/all_ped/all_families.ped",
+		family = "output/merged/{family_id}_merged.vcf.gz"
 	output:
-		pass
+		"output/family_ped/{family_id}.ped"
+	shell:
+		"grep {wildcards.family_id} {input.ped} > {output}"
 
-
-
-
+# Run peddy to check for problems with ped file. Spot errors when setting up config
+rule run_peddy:
+	input:
+		vcf = "output/merged/{family_id}_merged.vcf.gz",
+		ped = "output/family_ped/{family_id}.ped"
+	output:
+		"output/peddy/{family_id}.background_pca.json",
+		"output/peddy/{family_id}.het_check.csv",
+		"output/peddy/{family_id}.het_check.png",
+		"output/peddy/{family_id}.html",
+		"output/peddy/{family_id}.pca_check.png",
+		"output/peddy/{family_id}.ped_check.csv",
+		"output/peddy/{family_id}.ped_check.png",
+		"output/peddy/{family_id}.ped_check.rel-difference.csv",
+		"output/peddy/{family_id}.peddy.ped",
+		"output/peddy/{family_id}.sex_check.csv",
+		"output/peddy/{family_id}.sex_check.png",
+		"output/peddy/{family_id}.vs.html"
+	threads:
+		config["peddy_threads"]
+	conda:
+		"envs/python2.yaml"
+	shell:
+		"peddy --plot -p {threads} {input.vcf} {input.ped} --sites hg38 --prefix output/peddy/{wildcards.family_id} "
 
 # annotate with vep:
 rule annotate_with_vep:
 	input:
-		"output/merged/{family_id}.vcf.gz"
+		"output/merged/{family_id}_merged.vcf.gz"
 	output:
 		"output/merged_vep/{family_id}_merged_vep.vcf"
 	params:
 		vep_cache = config["vep_cache_location"],
 		ref = config["reference"],
 		gnomad_genomes = config["gnomad_genomes"],
-		gnomad_exomes = config["gnomad_exomes"]
+		gnomad_exomes = config["gnomad_exomes"],
+		ccrs = config["ccrs"],
+		spliceai = config["spliceai"],
+		cadd_snvs = config["cadd_snvs"],
+		cadd_indels = config["cadd_snvs"]
 	threads:
 		config["vep_threads"]
 	shell:
@@ -122,8 +171,9 @@ rule annotate_with_vep:
 		"--pick_order biotype,canonical,appris,tsl,ccds,rank,length "
 		"--custom {params.gnomad_genomes},gnomADg,vcf,exact,0,AF_POPMAX "
 		"--custom {params.gnomad_exomes},gnomADe,vcf,exact,0,AF_POPMAX "
-		"--custom {params.ccrs},ccrs,bed,overlap,1 "
+		"--custom {params.ccrs},ccrs,bed,overlap,0 "
 		"--custom {params.spliceai},SpliceAI,vcf,exact,0,DS_AG,DS_AL,DS_DG,DS_DL,SYMBOL "
+		"--plugin CADD,{params.cadd_snvs},{params.cadd_indels}"
 
 # Convert to CSV using gatk
 rule vcf_to_table:
@@ -150,7 +200,44 @@ rule vcf_to_table:
 		"-GF NR "
 		"-GF NV"
 
+# remove 'chr' string from chromosomes e.g. chr1 > 1
+rule fix_chromsome_notation:
+	input:
+		"output/csv/{family_id}_merged_vep.csv"
+	output:
+		"output/csv_fixed/{family_id}_merged_vep_fixed.csv"
+	shell:
+		"awk '{{gsub(/^chr/,\"\"); print}}' {input} > {output}   "
 
 # Run germline_filtering_script
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

@@ -1,0 +1,103 @@
+roi_bed: /media/sf_Documents/gel_vcf_filtering/config/beds/Exome-Agilent_V6_Padded_canonical.bed
+
+families:
+  FAM001: [LP3000972_DNA_H03_LP3000972_DNA_H03, LP3000972_DNA_H03_LP3000962_DNA_B01, LP3000972_DNA_H03_LP3000992_DNA_G08]
+  FAM002: [LP3000910_DNA_F02_LP3000910_DNA_F02, LP3000910_DNA_F02_LP3001047_DNA_G04, LP3000910_DNA_F02_LP3000907_DNA_D02]
+  FAM003: [LP3001146_DNA_E10_LP3001146_DNA_E10, LP3001146_DNA_E10_LP3001049_DNA_G12, LP3001146_DNA_E10_LP3001112_DNA_F07]
+
+reference: /media/sf_Documents/genomics_resources/refs/Homo_sapiens.GRCh38.dna.primary_assembly.fa.gz
+
+vep_cache_location: /media/sf_Documents/genomics_resources/vep_refseq_38/
+
+gnomad_genomes: /media/sf_Documents/genomics_resources/snps/gnomad.genomes.r2.0.1.sites.GRCh38.noVEP.vcf.gz
+
+gnomad_exomes: /media/sf_Documents/genomics_resources/snps/gnomad.exomes.r2.0.1.sites.GRCh38.noVEP.vcf.gz
+
+ccrs: /media/sf_Documents/genomics_resources/beds/ccrs.all.v2.20180420_38.bed.gz
+
+vep_threads: 1
+
+spliceai: /media/sf_Documents/genomics_resources/annotations/exome_spliceai_scores_38.vcf.gz
+
+cadd_snvs: /media/sf_Documents/genomics_resources/annotations/whole_genome_SNVs_38.tsv.gz
+
+cadd_indels:  /media/sf_Documents/genomics_resources/annotations/InDels38.tsv.gz
+
+vep_threads: 1
+
+peddy_threads: 1
+
+sample_info:
+    LP3000972_DNA_H03:
+      familyId: FAM001
+      maternalId: LP3000992_DNA_G08
+      paternalId: LP3000962_DNA_B01
+      phenotype: 2
+      sex: '1'
+      worklistId: '123000009'
+    LP3000992_DNA_G08:
+      familyId: FAM001
+      maternalId: null
+      paternalId: null
+      phenotype: 1
+      sex: '2'
+      worklistId: '123000009'
+    LP3000962_DNA_B01:
+      familyId: FAM001
+      maternalId: null
+      paternalId: null
+      phenotype: 1
+      sex: '1'
+      worklistId: '123000009'
+
+    LP3000910_DNA_F02:
+      familyId: FAM002
+      maternalId: LP3000907_DNA_D02
+      paternalId: LP3001047_DNA_G04
+      phenotype: 2
+      sex: '2'
+      worklistId: '123000015'
+    LP3000907_DNA_D02:
+      familyId: FAM002
+      maternalId: null
+      paternalId: null
+      phenotype: 1
+      sex: '2'
+      worklistId: '123000015'
+    LP3001047_DNA_G04:
+      familyId: FAM002
+      maternalId: null
+      paternalId: null
+      phenotype: 1
+      sex: '1'
+      worklistId: '123000015'
+
+    LP3001146_DNA_E10:
+      familyId: FAM003
+      maternalId: LP3001112_DNA_F07
+      paternalId: LP3001049_DNA_G12
+      phenotype: 2
+      sex: '1'
+      worklistId: '123000376'
+    LP3001112_DNA_F07:
+      familyId: FAM004
+      maternalId: null
+      paternalId: null
+      phenotype: 1
+      sex: '2'
+      worklistId: '123000376'
+    LP3001049_DNA_G12:
+      familyId: FAM003
+      maternalId: null
+      paternalId: null
+      phenotype: 1
+      sex: '1'
+      worklistId: '123000376'
+
+
+
+
+
+
+
+
