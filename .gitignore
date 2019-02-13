@@ -7,3 +7,4 @@ test.vcf.unmap
 *.ped
 output/
 *.csv
+.ipynb_checkpoints
