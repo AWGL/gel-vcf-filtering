@@ -1,4 +1,4 @@
-roi_bed: /media/sf_Documents/gel_vcf_filtering/config/beds/Exome-Agilent_V6_Padded_canonical.bed
+roi_bed: /media/sf_Documents/gel_vcf_filtering/config/beds/Homo_sapiens.GRCh38.95_exons_protein_coding_padded30_merged.bed
 
 families:
   FAM001: [LP3000972_DNA_H03_LP3000972_DNA_H03, LP3000972_DNA_H03_LP3000962_DNA_B01, LP3000972_DNA_H03_LP3000992_DNA_G08]
@@ -26,6 +26,12 @@ cadd_indels:  /media/sf_Documents/genomics_resources/annotations/InDels38.tsv.gz
 vep_threads: 1
 
 peddy_threads: 1
+
+filter_config: /media/sf_Documents/germline_variant_filter/germline_variant_filter/config/config_gel_vm.yaml
+local_panel_app_dump: /media/sf_Documents/germline_variant_filter/panelapp.csv
+hpo_file: /media/sf_Documents/germline_variant_filter/hpo_terms_gel_new.csv
+germline_variant_filter: /media/sf_Documents/germline_variant_filter/germline_variant_filter/germline_variant_filter.py
+
 
 sample_info:
     LP3000972_DNA_H03:
@@ -80,7 +86,7 @@ sample_info:
       sex: '1'
       worklistId: '123000376'
     LP3001112_DNA_F07:
-      familyId: FAM004
+      familyId: FAM003
       maternalId: null
       paternalId: null
       phenotype: 1
