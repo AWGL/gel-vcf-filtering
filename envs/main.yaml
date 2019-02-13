@@ -7,6 +7,7 @@ dependencies:
 - snakemake = 5.4.0
 - gatk4 = 4.0.11.0
 - htslib = 1.9
-- vt = 0.57721
 - ensembl-vep = 94.5
-- pandas
+- pandas = 0.23.4
+pip:
+  - suds-py3==2.21.0
