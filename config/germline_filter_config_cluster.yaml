@@ -1,0 +1,115 @@
+
+# If a synoymous variant has a clinical significance with one of these words in then keep it.
+clin_sig_words: ['pathogenic']
+
+# Which VEP fields to extract
+vep_fields: ['Consequence','Gene','HGVSc','HGVSp','SYMBOL','Existing_variation','gnomADg_AF_POPMAX','gnomADe_AF_POPMAX','PICK','CLIN_SIG', 'EXON', 'INTRON', 'Feature','SIFT','PolyPhen','SpliceAI_DS_AG','SpliceAI_DS_AL','SpliceAI_DS_DG','SpliceAI_DS_DL','SpliceAI_SYMBOL', 'ccrs', 'CADD_PHRED']
+
+# Which consequences to keep when filtering
+to_keep_consequences:
+               'transcript_ablation': 'transcript_ablation'
+               'splice_acceptor_variant': 'splice_acceptor_variant'
+               'splice_donor_variant': 'splice_donor_variant'
+               'stop_gained': 'stop_gained'
+               'frameshift_variant': 'frameshift_variant'
+               'stop_lost': 'stop_lost'
+               'start_lost': 'start_lost'
+               'transcript_amplification': 'transcript_amplification'
+               'inframe_insertion': 'inframe_insertion'
+               'inframe_deletion': 'inframe_deletion'
+               'missense_variant': 'missense_variant'
+               'protein_altering_variant': 'protein_altering_variant'
+               'splice_region_variant': 'splice_region_variant'
+               'incomplete_terminal_codon_variant': 'incomplete_terminal_codon_variant'
+               'start_retained_variant': 'start_retained_variant'
+               'stop_retained_variant': 'stop_retained_variant'
+               
+
+# VEP consequences in order of severity
+consequence_severity: ['transcript_ablation','splice_acceptor_variant','splice_donor_variant','stop_gained','frameshift_variant','stop_lost','start_lost','transcript_amplification','inframe_insertion','inframe_deletion','missense_variant','protein_altering_variant','splice_region_variant','incomplete_terminal_codon_variant','start_retained_variant','stop_retained_variant','synonymous_variant','coding_sequence_variant','mature_miRNA_variant','5_prime_UTR_variant','3_prime_UTR_variant','non_coding_transcript_exon_variant','intron_variant','NMD_transcript_variant','non_coding_transcript_variant','upstream_gene_variant','downstream_gene_variant','TFBS_ablation','TFBS_amplification','TF_binding_site_variant','regulatory_region_ablation','regulatory_region_amplification','feature_elongation','regulatory_region_variant','feature_truncation','intergenic_variant']
+
+
+# Which fields to include in the final csv
+final_fields_trio: ['SampleId', 'RunId', 'Workflow', 'VariantId', 'Genotype', 'Proband', 'Father', 'Mother', 'Gene', 'Transcript', 'HGVSc', 'HGVSp', 'Existing_variation', 'Consequence', 'WorstConsequence',  'gnomADg_AF_POPMAX','gnomADe_AF_POPMAX', 'Exon', 'Intron', 'DiseaseName','ModeOfInheritance', 'SIFT', 'PolyPhen', 'CADD_PHRED', 'CLIN_SIG','CCR_percentile', 'pLI', 'SpliceAI_DS_AG', 'SpliceAI_DS_AL', 'SpliceAI_DS_DG', 'SpliceAI_DS_DL',  'HPOCount', 'HPOCountMax', 'Pick']
+final_fields_single: ['SampleId', 'RunId', 'Workflow', 'VariantId', 'Genotype', 'Proband', 'Gene', 'Transcript',  'HGVSc', 'HGVSp', 'Existing_variation', 'Consequence', 'WorstConsequence',  'gnomADg_AF_POPMAX','gnomADe_AF_POPMAX', 'Exon', 'Intron', 'DiseaseName','ModeOfInheritance', 'SIFT', 'PolyPhen', 'CADD_PHRED', 'CLIN_SIG', 'CCR_percentile', 'pLI', 'SpliceAI_DS_AG', 'SpliceAI_DS_AL', 'SpliceAI_DS_DG', 'SpliceAI_DS_DL', 'CCR_percentile', 'HPOCount', 'HPOCountMax','Pick']
+
+hpo_file: '/data/db/human/HPO/ALL_SOURCES_ALL_FREQUENCIES_genes_to_phenotype.txt'
+
+# The gnomad constraint scores
+gnomad_gene_scores: '/data/db/human/gnomad/release_2.1_ht_constraint_constraint_refseq.txt'
+
+#Per sample quality cutoffs
+min_dp: 10
+min_gq: 10
+
+
+default_cutoff_gnomad_genomes: 0.01
+default_cutoff_gnomad_exomes: 0.01
+splice_ai_cutoff: 0.2
+
+# Parental allele quality for whether to call high confidence denovos or uniparental isodisomy.
+min_parental_depth_dn: 10
+min_parental_gq_dn: 10
+min_parental_depth_uid: 10
+min_parental_gq_uid: 10
+
+# Time in days if data in local panel app dump older than this then query API
+panel_app_dump_max_time: 250.0
+
+
+wf_restrictiveness: ['UNIPARENTAL_ISODISOMY', 'COMPOUND_HET', 'MITOCHONDRIAL', 'OTHER', 'RECCESSIVE_X_FEMALE', 'RECCESSIVE_AUTOSOMAL', 'X_LINKED_MALE', 'Y_LINKED_MALE','DOMINANT_AUTOSOMAL', 'DOMINANT_X_FEMALE' ,'DENOVO_HC', 'DENOVO_LC']
+
+
+gt_depth_tag: 'NR'
+
+
+# Allele Frequency cutoffs for the different workflows
+other_gnomadg: 0.01
+other_gnomade: 0.01
+other_ac: 10
+
+upi_gnomadg: 0.01
+upi_gnomade: 0.01
+
+compound_het_gnomadg: 0.01
+compound_het_gnomade: 0.01
+
+mito_gnomadg: 0.01
+mito_gnomade: 0.01
+
+reccessive_x_female_gnomadg: 0.01
+reccessive_x_female_gnomade: 0.01
+reccessive_x_female_ac: 8
+
+reccessive_autosomal_gnomadg: 0.01
+reccessive_autosomal_gnomade: 0.01
+reccessive_autosomal_ac: 6
+
+x_linked_male_gnomadg: 0.001
+x_linked_male_gnomade: 0.0075
+x_linked_male_ac: 6
+
+y_linked_male_gnomadg: 0.001
+y_linked_male_gnomade: 0.0075
+y_linked_male_ac: 6
+
+dom_autosomal_gnomadg: 0.001
+dom_autosomal_gnomade: 0.0075
+dom_autosomal_ac: 6
+
+dom_x_female_gnomadg: 0.001
+dom_x_female_gnomade: 0.0075
+dom_x_female_ac: 6
+
+de_novo_gnomadg: 0.001
+de_novo_gnomade: 0.0075
+de_novo_ac: 2
+
+
+
+
+
+
+
+
+

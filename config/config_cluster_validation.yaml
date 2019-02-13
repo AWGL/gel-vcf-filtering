@@ -1,0 +1,107 @@
+roi_bed: "/data/results/gel_vcf_filtering/gel-vcf-filtering/config/beds/Homo_sapiens.GRCh38.95_exons_protein_coding_padded30_merged.bed"
+
+families:
+  FAM001: [LP3000972_DNA_H03_LP3000972_DNA_H03, LP3000972_DNA_H03_LP3000962_DNA_B01, LP3000972_DNA_H03_LP3000992_DNA_G08]
+  FAM002: [LP3000910_DNA_F02_LP3000910_DNA_F02, LP3000910_DNA_F02_LP3001047_DNA_G04, LP3000910_DNA_F02_LP3000907_DNA_D02]
+  FAM003: [LP3001146_DNA_E10_LP3001146_DNA_E10, LP3001146_DNA_E10_LP3001049_DNA_G12, LP3001146_DNA_E10_LP3001112_DNA_F07]
+
+reference: /data/db/human/mappers/hg38/bwa/Homo_sapiens.GRCh38.dna.primary_assembly.fa.gz
+
+vep_cache_location: /data/db/human/vep_cache/vep_refseq_38_v94/
+
+gnomad_genomes: /data/db/human/gnomad/gnomad.genomes.r2.0.1.sites.GRCh38.noVEP.vcf.gz
+
+gnomad_exomes: /data/db/human/gnomad/gnomad.exomes.r2.0.1.sites.GRCh38.noVEP.vcf.gz
+
+ccrs: /data/db/human/CCR/ccrs.all.v2.20180420_38.bed.gz
+
+vep_threads: 4
+
+spliceai: /data/db/human/SpliceAI/exome_spliceai_scores_38.vcf.gz
+
+cadd_snvs: /data/db/human/CADD/whole_genome_SNVs_38.tsv.gz
+
+cadd_indels:  /data/db/human/CADD/InDels38.tsv.gz
+
+peddy_threads: 1
+
+filter_config: /data/results/gel_vcf_filtering/gel-vcf-filtering/config/germline_filter_config_cluster.yaml
+local_panel_app_dump: /data/results/gel_vcf_filtering/db/panelappdb.csv
+hpo_file: /data/results/gel_vcf_filtering/runs/190213_validation_run/190213_validation_run.csv
+germline_variant_filter: /data/results/gel_vcf_filtering/germline_variant_filter/germline_variant_filter.py
+
+
+sample_info:
+    LP3000972_DNA_H03:
+      familyId: '123000009'
+      maternalId: LP3000992_DNA_G08
+      paternalId: LP3000962_DNA_B01
+      phenotype: 2
+      sex: '1'
+      worklistId: '123000009'
+    LP3000992_DNA_G08:
+      familyId: '123000009'
+      maternalId: null
+      paternalId: null
+      phenotype: 1
+      sex: '2'
+      worklistId: '123000009'
+    LP3000962_DNA_B01:
+      familyId: '123000009'
+      maternalId: null
+      paternalId: null
+      phenotype: 1
+      sex: '1'
+      worklistId: '123000009'
+
+    LP3000910_DNA_F02:
+      familyId: '123000015'
+      maternalId: LP3000907_DNA_D02
+      paternalId: LP3001047_DNA_G04
+      phenotype: 2
+      sex: '2'
+      worklistId: '123000015'
+    LP3000907_DNA_D02:
+      familyId: '123000015'
+      maternalId: null
+      paternalId: null
+      phenotype: 1
+      sex: '2'
+      worklistId: '123000015'
+    LP3001047_DNA_G04:
+      familyId: '123000015'
+      maternalId: null
+      paternalId: null
+      phenotype: 1
+      sex: '1'
+      worklistId: '123000015'
+
+    LP3001146_DNA_E10:
+      familyId: '123000376'
+      maternalId: LP3001112_DNA_F07
+      paternalId: LP3001049_DNA_G12
+      phenotype: 2
+      sex: '1'
+      worklistId: '123000376'
+    LP3001112_DNA_F07:
+      familyId: '123000376'
+      maternalId: null
+      paternalId: null
+      phenotype: 1
+      sex: '2'
+      worklistId: '123000376'
+    LP3001049_DNA_G12:
+      familyId: '123000376'
+      maternalId: null
+      paternalId: null
+      phenotype: 1
+      sex: '1'
+      worklistId: '123000376'
+
+
+
+
+
+
+
+
