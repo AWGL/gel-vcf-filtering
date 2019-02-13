@@ -57,8 +57,8 @@ rule fix_sample_names:
 		vcf = "input/{family_id}/{sample}.vcf.gz",
 		index = "input/{family_id}/{sample}.vcf.gz.tbi"
 	output:
-		vcf = "output/fixed_name_vcfs/{family_id}/{sample}_fixed_names.vcf.gz",
-		index = "output/fixed_name_vcfs/{family_id}/{sample}_fixed_names.vcf.gz.tbi",
+		vcf = temp("output/fixed_name_vcfs/{family_id}/{sample}_fixed_names.vcf.gz"),
+		index = temp("output/fixed_name_vcfs/{family_id}/{sample}_fixed_names.vcf.gz.tbi"),
 		original_name = "output/temp/{family_id}/{sample}_original_name.txt",
 		new_name = "output/temp/{family_id}/{sample}_new_name.txt"
 	shell:
@@ -205,7 +205,7 @@ rule vcf_to_table:
 	input:
 		"output/merged_vep/{family_id}/{family_id}_merged_vep.vcf"
 	output:
-		"output/csv/{family_id}/{family_id}_merged_vep.csv"
+		temp("output/csv/{family_id}/{family_id}_merged_vep.csv")
 	shell:
 		"gatk VariantsToTable "
 		"-V {input} -O {output} "
@@ -230,7 +230,7 @@ rule fix_chromsome_notation:
 	input:
 		"output/csv/{family_id}/{family_id}_merged_vep.csv"
 	output:
-		"output/csv_fixed/{family_id}/{family_id}_merged_vep_fixed.csv"
+		temp("output/csv_fixed/{family_id}/{family_id}_merged_vep_fixed.csv")
 	shell:
 		"awk '{{gsub(/^chr/,\"\"); print}}' {input} > {output}   "
 
