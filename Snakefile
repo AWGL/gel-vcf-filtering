@@ -105,11 +105,12 @@ rule merge_vcfs:
 		vcf = lambda wildcards: get_family(wildcards),
 		index = lambda wildcards: get_family_index(wildcards)
 	output:
-		"output/merged/{family_id}/{family_id}_merged.vcf.gz"
+		vcf = temp("output/merged/{family_id}/{family_id}_merged.vcf.gz")
+		index = temp("output/merged/{family_id}/{family_id}_merged.vcf.gz.tbi"),
 	params:
 		vcfs = lambda wildcards, input: " ".join(input.vcf)
 	shell:
-		"bcftools merge {params.vcfs} | bgzip -c > {output} && tabix {output}"
+		"bcftools merge {params.vcfs} | bgzip -c > {output.vcf} && tabix {output.vcf}"
 
 # Create a PED file for downstream analysis
 rule create_ped_file:
@@ -158,7 +159,8 @@ rule run_peddy:
 # annotate with vep:
 rule annotate_with_vep:
 	input:
-		"output/merged/{family_id}/{family_id}_merged.vcf.gz"
+		vcf = "output/merged/{family_id}/{family_id}_merged.vcf.gz",
+		index = "output/merged/{family_id}/{family_id}_merged.vcf.gz.tbi"
 	output:
 		"output/merged_vep/{family_id}/{family_id}_merged_vep.vcf"
 	params:
@@ -179,7 +181,7 @@ rule annotate_with_vep:
 		"--fork {threads} "
 		"--species homo_sapiens "
 		"--assembly GRCh38  "
-		"--input_file {input}  "
+		"--input_file {input.vcf}  "
 		"--output_file {output} "
 		"--force_overwrite "
 		"--cache "

@@ -39,7 +39,7 @@ hpo_file: '/data/db/human/HPO/ALL_SOURCES_ALL_FREQUENCIES_genes_to_phenotype.txt
 gnomad_gene_scores: '/data/db/human/gnomad/release_2.1_ht_constraint_constraint_refseq.txt'
 
 #Per sample quality cutoffs
-min_dp: 10
+min_dp: 20
 min_gq: 10
 
 
@@ -48,9 +48,9 @@ default_cutoff_gnomad_exomes: 0.01
 splice_ai_cutoff: 0.2
 
 # Parental allele quality for whether to call high confidence denovos or uniparental isodisomy.
-min_parental_depth_dn: 10
+min_parental_depth_dn: 15
 min_parental_gq_dn: 10
-min_parental_depth_uid: 10
+min_parental_depth_uid: 15
 min_parental_gq_uid: 10
 
 # Time in days if data in local panel app dump older than this then query API
@@ -86,23 +86,23 @@ reccessive_autosomal_gnomade: 0.01
 reccessive_autosomal_ac: 6
 
 x_linked_male_gnomadg: 0.001
-x_linked_male_gnomade: 0.0075
+x_linked_male_gnomade: 0.001
 x_linked_male_ac: 6
 
 y_linked_male_gnomadg: 0.001
-y_linked_male_gnomade: 0.0075
+y_linked_male_gnomade: 0.001
 y_linked_male_ac: 6
 
 dom_autosomal_gnomadg: 0.001
-dom_autosomal_gnomade: 0.0075
+dom_autosomal_gnomade: 0.001
 dom_autosomal_ac: 6
 
 dom_x_female_gnomadg: 0.001
-dom_x_female_gnomade: 0.0075
+dom_x_female_gnomade: 0.001
 dom_x_female_ac: 6
 
 de_novo_gnomadg: 0.001
-de_novo_gnomade: 0.0075
+de_novo_gnomade: 0.001
 de_novo_ac: 2
 
 

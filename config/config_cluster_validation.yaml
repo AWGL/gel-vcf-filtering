@@ -1,4 +1,4 @@
-roi_bed: "/data/results/gel_vcf_filtering/gel-vcf-filtering/config/beds/Homo_sapiens.GRCh38.95_exons_protein_coding_padded30_merged.bed"
+roi_bed: "/data/results/gel_vcf_filtering/gel-vcf-filtering/config/beds/Homo_sapiens.GRCh38.95_exons_protein_coding_padded30_merged_chr.bed"
 
 families:
   FAM001: [LP3000972_DNA_H03_LP3000972_DNA_H03, LP3000972_DNA_H03_LP3000962_DNA_B01, LP3000972_DNA_H03_LP3000992_DNA_G08]
