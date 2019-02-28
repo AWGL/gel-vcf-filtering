@@ -105,8 +105,8 @@ rule merge_vcfs:
 		vcf = lambda wildcards: get_family(wildcards),
 		index = lambda wildcards: get_family_index(wildcards)
 	output:
-		vcf = temp("output/merged/{family_id}/{family_id}_merged.vcf.gz")
-		index = temp("output/merged/{family_id}/{family_id}_merged.vcf.gz.tbi"),
+		vcf = temp("output/merged/{family_id}/{family_id}_merged.vcf.gz"),
+		index = temp("output/merged/{family_id}/{family_id}_merged.vcf.gz.tbi")
 	params:
 		vcfs = lambda wildcards, input: " ".join(input.vcf)
 	shell:
