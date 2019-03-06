@@ -275,7 +275,7 @@ rule filter_variants:
 		"--results-dir output/filtered_csv/{wildcards.family_id}/ "
 		"--csq $(cat {input.csq}) "
 		"--patient-hpos {params.hpo_file} "
-		"--add-ccrs 
+		"--add-ccrs "
 		"--unaffected-parent-filter "
 		"&& touch {output}"
 
