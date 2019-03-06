@@ -30,8 +30,8 @@ consequence_severity: ['transcript_ablation','splice_acceptor_variant','splice_d
 
 
 # Which fields to include in the final csv
-final_fields_trio: ['SampleId', 'RunId', 'Workflow', 'VariantId', 'Genotype', 'Proband', 'Father', 'Mother', 'Gene', 'Transcript', 'HGVSc', 'HGVSp', 'Existing_variation', 'Consequence', 'WorstConsequence',  'gnomADg_AF_POPMAX','gnomADe_AF_POPMAX', 'Exon', 'Intron', 'DiseaseName','ModeOfInheritance', 'SIFT', 'PolyPhen', 'CADD_PHRED', 'CLIN_SIG','CCR_percentile', 'pLI', 'SpliceAI_DS_AG', 'SpliceAI_DS_AL', 'SpliceAI_DS_DG', 'SpliceAI_DS_DL',  'HPOCount', 'HPOCountMax', 'Pick']
-final_fields_single: ['SampleId', 'RunId', 'Workflow', 'VariantId', 'Genotype', 'Proband', 'Gene', 'Transcript',  'HGVSc', 'HGVSp', 'Existing_variation', 'Consequence', 'WorstConsequence',  'gnomADg_AF_POPMAX','gnomADe_AF_POPMAX', 'Exon', 'Intron', 'DiseaseName','ModeOfInheritance', 'SIFT', 'PolyPhen', 'CADD_PHRED', 'CLIN_SIG', 'CCR_percentile', 'pLI', 'SpliceAI_DS_AG', 'SpliceAI_DS_AL', 'SpliceAI_DS_DG', 'SpliceAI_DS_DL', 'CCR_percentile', 'HPOCount', 'HPOCountMax','Pick']
+final_fields_trio: ['SampleId', 'RunId', 'Workflow', 'VariantId', 'Genotype', 'Proband', 'Father', 'Mother', 'Gene', 'Transcript', 'HGVSc', 'HGVSp', 'Existing_variation', 'Consequence', 'WorstConsequence',  'gnomADg_AF_POPMAX','gnomADe_AF_POPMAX', 'Exon', 'Intron', 'DiseaseName','ModeOfInheritance', 'SIFT', 'PolyPhen', 'CADD_PHRED', 'CLIN_SIG','CCR_percentile', 'pLI', 'SpliceAI_DS_AG', 'SpliceAI_DS_AL', 'SpliceAI_DS_DG', 'SpliceAI_DS_DL',  'HPOCount', 'HPOCountMax', 'OLD_CLUMPED', 'Pick']
+final_fields_single: ['SampleId', 'RunId', 'Workflow', 'VariantId', 'Genotype', 'Proband', 'Gene', 'Transcript',  'HGVSc', 'HGVSp', 'Existing_variation', 'Consequence', 'WorstConsequence',  'gnomADg_AF_POPMAX','gnomADe_AF_POPMAX', 'Exon', 'Intron', 'DiseaseName','ModeOfInheritance', 'SIFT', 'PolyPhen', 'CADD_PHRED', 'CLIN_SIG', 'CCR_percentile', 'pLI', 'SpliceAI_DS_AG', 'SpliceAI_DS_AL', 'SpliceAI_DS_DG', 'SpliceAI_DS_DL', 'CCR_percentile', 'HPOCount', 'HPOCountMax', 'OLD_CLUMPED', Pick']
 
 hpo_file: '/data/db/human/HPO/ALL_SOURCES_ALL_FREQUENCIES_genes_to_phenotype.txt'
 
@@ -40,7 +40,7 @@ gnomad_gene_scores: '/data/db/human/gnomad/release_2.1_ht_constraint_constraint_
 
 #Per sample quality cutoffs
 min_dp: 20
-min_gq: 10
+min_gq: 20
 
 
 default_cutoff_gnomad_genomes: 0.01
@@ -49,9 +49,9 @@ splice_ai_cutoff: 0.2
 
 # Parental allele quality for whether to call high confidence denovos or uniparental isodisomy.
 min_parental_depth_dn: 15
-min_parental_gq_dn: 10
+min_parental_gq_dn: 20
 min_parental_depth_uid: 15
-min_parental_gq_uid: 10
+min_parental_gq_uid: 20
 
 # Time in days if data in local panel app dump older than this then query API
 panel_app_dump_max_time: 250.0
