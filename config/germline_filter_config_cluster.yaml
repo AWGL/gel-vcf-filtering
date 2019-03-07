@@ -30,7 +30,7 @@ consequence_severity: ['transcript_ablation','splice_acceptor_variant','splice_d
 
 
 # Which fields to include in the final csv
-final_fields_trio: ['SampleId', 'RunId', 'Workflow', 'VariantId', 'Genotype', 'Proband', 'Father', 'Mother', 'Gene', 'Transcript', 'HGVSc', 'HGVSp', 'Existing_variation', 'Consequence', 'WorstConsequence',  'gnomADg_AF_POPMAX','gnomADe_AF_POPMAX', 'Exon', 'Intron', 'DiseaseName','ModeOfInheritance', 'SIFT', 'PolyPhen', 'CADD_PHRED', 'CLIN_SIG','CCR_percentile', 'pLI', 'SpliceAI_DS_AG', 'SpliceAI_DS_AL', 'SpliceAI_DS_DG', 'SpliceAI_DS_DL',  'HPOCount', 'HPOCountMax', 'OLD_CLUMPED', 'Pick']
+final_fields_trio: ['SampleId', 'RunId', 'Workflow', 'VariantId', 'Genotype', 'Proband', 'Father', 'Mother', 'Gene', 'Transcript', 'HGVSc', 'HGVSp', 'Existing_variation', 'Consequence', 'WorstConsequence',  'gnomADg_AF_POPMAX','gnomADe_AF_POPMAX', 'Exon', 'Intron', 'DiseaseName','ModeOfInheritance', 'SIFT', 'PolyPhen', 'CADD_PHRED', 'CLIN_SIG','CCR_percentile', 'pLI', 'SpliceAI_DS_AG', 'SpliceAI_DS_AL', 'SpliceAI_DS_DG', 'SpliceAI_DS_DL',  'HPOCount', 'HPOCountMax', 'InHouseCount', 'OLD_CLUMPED', 'Pick']
 final_fields_single: ['SampleId', 'RunId', 'Workflow', 'VariantId', 'Genotype', 'Proband', 'Gene', 'Transcript',  'HGVSc', 'HGVSp', 'Existing_variation', 'Consequence', 'WorstConsequence',  'gnomADg_AF_POPMAX','gnomADe_AF_POPMAX', 'Exon', 'Intron', 'DiseaseName','ModeOfInheritance', 'SIFT', 'PolyPhen', 'CADD_PHRED', 'CLIN_SIG', 'CCR_percentile', 'pLI', 'SpliceAI_DS_AG', 'SpliceAI_DS_AL', 'SpliceAI_DS_DG', 'SpliceAI_DS_DL', 'CCR_percentile', 'HPOCount', 'HPOCountMax', 'OLD_CLUMPED', 'Pick']
 
 hpo_file: '/data/db/human/HPO/ALL_SOURCES_ALL_FREQUENCIES_genes_to_phenotype.txt'
