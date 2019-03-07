@@ -2,7 +2,7 @@
 # Genomics England VCF filtering
 ###########################################################################################################################
 
-config_location = "config/config_vm_validation.yaml"
+config_location = "config.yaml"
 
 configfile: config_location
 
@@ -115,7 +115,7 @@ rule merge_vcfs:
 # Create a PED file for downstream analysis
 rule create_ped_file:
 	input:
-		config_location
+		ancient(config_location)
 	output:
 		"output/all_ped/all_families.ped"
 	shell:
@@ -260,7 +260,7 @@ rule filter_variants:
 		germline_variant_filter = config["germline_variant_filter"],
 		filter_config = config["filter_config"],
 		local_panel_app_dump = config["local_panel_app_dump"],
-		hpo_file = config["hpo_file"]
+		hpo_file = config["hpo_file"],
 		in_house_db = config["in_house_db"]
 	shell:
 		"python {params.germline_variant_filter} "
