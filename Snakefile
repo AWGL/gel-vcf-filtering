@@ -261,6 +261,7 @@ rule filter_variants:
 		filter_config = config["filter_config"],
 		local_panel_app_dump = config["local_panel_app_dump"],
 		hpo_file = config["hpo_file"]
+		in_house_db = config["in_house_db"]
 	shell:
 		"python {params.germline_variant_filter} "
 		"--config {params.filter_config} "
@@ -277,6 +278,7 @@ rule filter_variants:
 		"--patient-hpos {params.hpo_file} "
 		"--add-ccrs "
 		"--unaffected-parent-filter "
+		"--add-to-db {params.in_house_db} "
 		"&& touch {output}"
 
 

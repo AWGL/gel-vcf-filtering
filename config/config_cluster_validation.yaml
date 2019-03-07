@@ -29,7 +29,7 @@ filter_config: /data/results/gel_vcf_filtering/gel-vcf-filtering/config/germline
 local_panel_app_dump: /data/results/gel_vcf_filtering/db/panelappdb.csv
 hpo_file: /data/results/gel_vcf_filtering/runs/190213_validation_run/190213_validation_run.csv
 germline_variant_filter: /data/results/gel_vcf_filtering/germline_variant_filter/germline_variant_filter.py
-
+in_house_db: /data/results/gel_vcf_filtering/db/in_house_freqs.db
 
 sample_info:
     LP3000972_DNA_H03:
